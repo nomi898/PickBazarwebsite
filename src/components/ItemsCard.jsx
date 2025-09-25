@@ -36,7 +36,11 @@ const handleClose = () => setOpen(false);
       <Grid container spacing={2}>
         {products.map((product) => (
     
-          <Grid key={product.id} item xs={12} sm={6} md={3}>
+          <Grid key={product.id} sx={{
+            flex: '1 1 100%',       // mobile
+            '@media (min-width:600px)': { flex: '1 1 50%' },   // small
+            '@media (min-width:900px)': { flex: '1 1 20%' },   // medium
+          }}>
             <Card sx={{ borderRadius: 3, boxShadow: 2,maxWidth: 300, mx: "auto"  }}>
               <CardMedia onClick={handleOpen}
                 component="img"
