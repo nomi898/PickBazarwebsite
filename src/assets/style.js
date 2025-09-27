@@ -5,7 +5,10 @@ export const ModalStyle = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 900,
+    width: 1100,
     backgroundColor: '#ffff',
     p: 4,
+    border: 0
   };
+
+  
