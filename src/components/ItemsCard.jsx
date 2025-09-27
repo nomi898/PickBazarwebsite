@@ -2,32 +2,18 @@
 import React, { useState } from 'react';
 import { Box,Button,Card,CardContent,CardMedia,Grid,Typography,} from '@mui/material';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import Apple from '../assets/images/Apples.webp';
-import BabySpinach from '../assets/images/BabySpinach.webp';
-import blueberries from '../assets/images/blueberries.webp';
-import BrusselsSprouts from '../assets/images/BrusselsSprouts.webp';
-import CelerySticks from '../assets/images/CelerySticks.webp';
-import clementines from '../assets/images/clementines.webp';
-import Corn from '../assets/images/Corn.webp';
-import Cucumber from '../assets/images/Cucumber.webp';
 import ProductDetailModal from './ProductDetailModal';
-
-const products = [
-  { id: 1, name: 'Apples', weight: '1lb', price: '$1.60', image: Apple },
-  { id: 2, name: 'BabySpinach', weight: '1lb', price: '$1.60', image: BabySpinach },
-  { id: 3, name: 'Blueberries', weight: '1lb', price: '$1.60', image: blueberries },
-  { id: 4, name: 'BrusselsSprouts', weight: '1lb', price: '$1.60', image: BrusselsSprouts },
-  { id: 5, name: 'CelerySticks', weight: '1lb', price: '$1.60', image: CelerySticks },
-  { id: 6, name: 'Clementines', weight: '1lb', price: '$1.60', image: clementines },
-  { id: 7, name: 'Corn', weight: '1lb', price: '$1.60', image: Corn },
-  { id: 8, name: 'Cucumber', weight: '1lb', price: '$1.60', image: Cucumber },
-];
+import { products } from '../../utils/product';
 
 
-
+// states 
 const ItemsCard = () => {
 const [open, setOpen] = useState(false);
-const handleOpen = () => setOpen(true);
+const [currentProductId, SetcurrentProductId] = useState({});
+const handleOpen = (product)=> {
+  SetcurrentProductId(product.id);
+  setOpen(true);
+};
 const handleClose = () => setOpen(false);
   return (
     <>
@@ -35,14 +21,15 @@ const handleClose = () => setOpen(false);
      
       <Grid container spacing={2}>
         {products.map((product) => (
-    
+          
           <Grid key={product.id} sx={{
             flex: '1 1 100%',       // mobile
             '@media (min-width:600px)': { flex: '1 1 50%' },   // small
             '@media (min-width:900px)': { flex: '1 1 20%' },   // medium
           }}>
             <Card sx={{ borderRadius: 3, boxShadow: 2,maxWidth: 300, mx: "auto"  }}>
-              <CardMedia onClick={handleOpen}
+              {/* image of product  */}
+              <CardMedia onClick={()=>{handleOpen(product)}}
                 component="img"
                 height="220"
                 image= {product.image}
@@ -50,17 +37,20 @@ const handleClose = () => setOpen(false);
                 sx={{ objectFit: 'cover' }}
               />
               <CardContent>
+                {/* name of product  */}
                 <Typography gutterBottom variant="h6" component="div">
                   {product.name}
                 </Typography>
+                {/* weight of product  */}
                 <Typography variant="body2" sx={{ color: 'grey', mb: 1 }}>
                   {product.weight}
                 </Typography>
-
+                {/* price of product  */}
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Typography variant="h6" sx={{ color: '#009f7f' }}>
                     {product.price}
                   </Typography>
+                  {/* button of cart text and icon ShoppingBasketIcon  */}
                   <Button
                     startIcon={<ShoppingBasketIcon />}
                     sx={{
@@ -80,7 +70,13 @@ const handleClose = () => setOpen(false);
           </Grid>
         ))}
       </Grid>
-      <ProductDetailModal open = {open} handleOpen={handleOpen} handleClose= {handleClose} />
+      /* props for opening of modal  */
+      {
+        open &&(
+      <ProductDetailModal open = {open} 
+      currentProductId={currentProductId}
+       handleClose= {handleClose} />
+      )}
     </Box>
     
     </>

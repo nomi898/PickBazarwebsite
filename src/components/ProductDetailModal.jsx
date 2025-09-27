@@ -5,13 +5,17 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Divider from '@mui/material/Divider';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
+import { products } from '../../utils/product';
+
 
 const ProductDetailModal = (props) => {
-    const {open,handleOpen, handleClose } =props;
+    const {open, handleClose,currentProductId } =props;
+
+    const selectedProduct= products.find((product)=>product.id === currentProductId);
+    
   return (
     <>
       <Modal
@@ -26,7 +30,9 @@ const ProductDetailModal = (props) => {
         {/* image portion */}
         <Grid size={6}>
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        <SwiperSlide>Slide 1</SwiperSlide>
+        <SwiperSlide>
+          <img src={selectedProduct?.image} alt="" />
+        </SwiperSlide>
         <SwiperSlide>Slide 2</SwiperSlide>
         <SwiperSlide>Slide 3</SwiperSlide>
 
@@ -37,8 +43,8 @@ const ProductDetailModal = (props) => {
           {/* fav & star name weight  */}
         <Box className='flex justify-between'>
             <Box>
-              <Typography variant='h4'>Apples</Typography>
-              <Typography sx={{color:'grey'}} variant='body1'>1lb</Typography>
+              <Typography variant='h4'>{selectedProduct?.name}</Typography>
+              <Typography sx={{color:'grey'}} variant='body1'>{selectedProduct?.weight}</Typography>
             </Box>
             <Box className='flex flex-col '>
               <FavoriteBorderIcon />
@@ -47,7 +53,7 @@ const ProductDetailModal = (props) => {
             </Box>
             {/* description  */}
             <Typography sx={{mt:5,color:'grey'}}  variant='body1'>An apple is a sweet, edible fruit produced by an apple tree (Malus domestica). Apple trees are ... The skin of ripe apples is generally red, yellow, g...</Typography>
-            <Typography variant='h4' sx={{color:'#009f7f',mt:3}}>$1.60</Typography>
+            <Typography variant='h4' sx={{color:'#009f7f',mt:3}}>{selectedProduct?.price}</Typography>
             {/* add to cart button  */}
             <Box className='flex'>
               <Button sx={{marginTop:'10px',bgcolor:'#009f7f',px: 6, py:2,mx:2 }} variant='contained'>Add to Shopping Cart</Button>
