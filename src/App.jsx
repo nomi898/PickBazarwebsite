@@ -1,25 +1,27 @@
-import Header from './components/header';
+
 import HeroSection from './components/HeroSection';
 import CouponsImages from './components/CouponsImages';
 import ItemsCard from './components/itemsCard';
 import { Box } from '@mui/material';
 import HoverCart from './components/HoverCart';
-
-
+import { Route, BrowserRouter, Routes } from 'react-router';
+import Layout from './components/layout';
+import Home from './components/Home';
 function App() {
   return (
-    <Box className='relative'>
-      <Header />
-      <HeroSection />
-      <CouponsImages />
-      <ItemsCard />
-      <Box
-        className="fixed right-0 top-1/2 z-50"
-      >
-        <HoverCart/>
-        </Box>  
-  
-    </Box>
+    <>
+    <BrowserRouter>
+    <Routes>
+        <Route path='/' element={<Layout />}> 
+          <Route index element={<Home />}></Route>
+            <Route path='offers' element={<h1>Offers</h1>}></Route>
+            <Route path='shops' element={<Home />}></Route>
+            <Route path='contacts' element={<h1>Contacts</h1>}></Route>
+        </ Route>
+      </Routes>
+    </BrowserRouter>
+    </>
+
   );
 }
 

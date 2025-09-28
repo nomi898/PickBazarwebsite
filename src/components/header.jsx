@@ -31,6 +31,7 @@ import {
 } from "@mui/material";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import { BorderAll, Height } from "@mui/icons-material";
+import { Link, NavLink } from "react-router";
 
 const drawerWidth = 240;
 
@@ -104,10 +105,10 @@ function AppHeader(props) {
 
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {/* after space buttons  appbar*/}
-            <Box className="flex justify-center">
-              <Button sx={{ color: "#6B7280" }}>Shops</Button>
-              <Button sx={{ color: "#6B7280" }}>Offers</Button>
-              <Button sx={{ color: "#6B7280" }}>Contacts</Button>
+            <Box className="flex justify-center items-center">
+              <NavLink className= {({isActive }) => (isActive ? 'text-[#009f7f] px-3 font-bold': 'text-gray-500 px-3')} to='/shops' sx={{ color: "#6B7280" }}>Shops</NavLink>
+              <NavLink className= {({isActive }) => (isActive ? 'text-[#009f7f] px-3 font-bold': 'text-gray-500 px-3')}  to='/offers'  sx={{ color: "#6B7280" }}>Offers</NavLink>
+              <NavLink className={({isActive }) => (isActive ? 'text-[#009f7f] px-3 font-bold': 'text-gray-500 px-3')} to='/contacts'  sx={{ color: "#6B7280" }}>Contacts</NavLink>
               {/* select button appbar  */}
               <Box sx={{ minWidth: 100, mx: 1, display: "inline-block" }}>
                 <FormControl fullWidth size="small">
