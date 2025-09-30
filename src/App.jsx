@@ -9,6 +9,7 @@ import Layout from './components/layout';
 import Home from './components/Home';
 import Register from './components/auth/Register';
 import Signin from './components/auth/Signin';
+
 function App() {
   return (
     <>
