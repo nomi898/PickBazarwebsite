@@ -70,7 +70,7 @@ const handleClose = () => setOpen(false);
           </Grid>
         ))}
       </Grid>
-      /* props for opening of modal  */
+      {/*  props for opening of modal   */}
       {
         open &&(
       <ProductDetailModal open = {open} 

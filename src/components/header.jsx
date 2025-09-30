@@ -51,7 +51,7 @@ function AppHeader(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        <img src={Logo} />
+        <Link to ='/'><img src={Logo} /></Link>
       </Typography>
     </Box>
   );
@@ -83,7 +83,7 @@ function AppHeader(props) {
             {/* logo  */}
             <Box className={"flex align-center"}>
               <Box className={"mx-5"}>
-                <img src={Logo} />
+              <Link to ='/'><img src={Logo} /></Link>
               </Box>
               <Box>
                 {/* select button appbar  */}
@@ -144,7 +144,8 @@ function AppHeader(props) {
               >
                 Join
               </Button>
-              <Button
+              <Button to='/register'
+                component={Link}
                 variant="contained"
                 sx={{
                   color: "#fffff",
