@@ -21,8 +21,10 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Menu from "@mui/material/Menu";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {
   Autocomplete,
+  Badge,
   FormControl,
   InputLabel,
   MenuItem,
@@ -32,11 +34,17 @@ import {
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import { BorderAll, Height } from "@mui/icons-material";
 import { Link, NavLink } from "react-router";
+import { useSelector } from "react-redux";
+
+
 
 const drawerWidth = 240;
 
 function AppHeader(props) {
   const { window } = props;
+//  Get the 'Products' array from Redux cart slice and rename it to 'ProductsDummyData' 
+const {Products:ProductsDummyData} = useSelector((state)=>state.cart);
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
   // State for Select dropdown
   const [age, setAge] = React.useState("");
@@ -137,13 +145,18 @@ function AppHeader(props) {
                   </Select>
                 </FormControl>
               </Box>
-
+              {/* badge  */}
+              <Badge className="mx-7 text-[#009f7f]" badgeContent={ProductsDummyData?.length} color="primary">
+              <ShoppingCartIcon />
+              </Badge>
+              {/* join button  */}
               <Button
                 variant="contained"
                 sx={{ color: "#fffff", backgroundColor: "#009f7f" }}
               >
                 Join
               </Button>
+              {/* seller button  */}
               <Button to='/register'
                 component={Link}
                 variant="contained"

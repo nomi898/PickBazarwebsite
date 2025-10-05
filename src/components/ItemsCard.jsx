@@ -3,12 +3,17 @@ import React, { useState } from 'react';
 import { Box,Button,Card,CardContent,CardMedia,Grid,Typography,} from '@mui/material';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import ProductDetailModal from './ProductDetailModal';
-import { products } from '../../utils/product';
+import CartList from './CartList/CartList';
+import { useSelector } from 'react-redux';
 
 
 // states 
 const ItemsCard = () => {
 const [open, setOpen] = useState(false);
+
+//  Get the 'Products' array from Redux cart slice and rename it to 'ProductsDummyData' 
+const {Products:ProductsDummyData} = useSelector((state)=>state.cart);
+
 const [currentProductId, SetcurrentProductId] = useState({});
 const handleOpen = (product)=> {
   SetcurrentProductId(product.id);
@@ -18,9 +23,11 @@ const handleClose = () => setOpen(false);
   return (
     <>
     <Box sx={{ width: '100%', maxWidth: 1280, mx: 'auto', p: 2 }}>
+    
      
       <Grid container spacing={2}>
-        {products.map((product) => (
+        {/* redux map from store  */}
+        {ProductsDummyData?.map((product) => (
           
           <Grid key={product.id} sx={{
             flex: '1 1 100%',       // mobile
