@@ -4,7 +4,8 @@ import { Box,Button,Card,CardContent,CardMedia,Grid,Typography,} from '@mui/mate
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import ProductDetailModal from './ProductDetailModal';
 import CartList from './CartList/CartList';
-import { useSelector } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
+import { addToCart } from '../store/slices/Cartlist';
 
 
 // states 
@@ -13,6 +14,8 @@ const [open, setOpen] = useState(false);
 
 //  Get the 'Products' array from Redux cart slice and rename it to 'ProductsDummyData' 
 const {Products:ProductsDummyData} = useSelector((state)=>state.cart);
+
+const dispatch = useDispatch();
 
 const [currentProductId, SetcurrentProductId] = useState({});
 const handleOpen = (product)=> {
@@ -59,6 +62,7 @@ const handleClose = () => setOpen(false);
                   </Typography>
                   {/* button of cart text and icon ShoppingBasketIcon  */}
                   <Button
+                  onClick={()=>dispatch(addToCart(product))}
                     startIcon={<ShoppingBasketIcon />}
                     sx={{
                       border: '1px solid grey',
@@ -67,9 +71,10 @@ const handleClose = () => setOpen(false);
                       textTransform: 'uppercase',
                       px: 2,
                       py: 0.5,
-                    }}
+                      }}
                   >
                     Cart
+                  
                   </Button>
                 </Box>
               </CardContent>
