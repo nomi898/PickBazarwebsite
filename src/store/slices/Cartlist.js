@@ -34,6 +34,7 @@ export const counterSlice = createSlice({
     const existingItem = state.CartList.find((prod) => prod.id === item.id);
     if(existingItem){
       state.CartList = state.CartList.filter((prod) => prod.id !== item.id);
+
     }
   }}});
 

@@ -58,7 +58,7 @@ const handleClose = () => setOpen(false);
                 {/* price of product  */}
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Typography variant="h6" sx={{ color: '#009f7f' }}>
-                    {product.price}
+                    ${product.price}
                   </Typography>
                   {/* button of cart text and icon ShoppingBasketIcon  */}
                   <Button

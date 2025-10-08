@@ -145,10 +145,6 @@ const {Products:ProductsDummyData} = useSelector((state)=>state.cart);
                   </Select>
                 </FormControl>
               </Box>
-              {/* badge  */}
-              <Badge className="mx-7 text-[#009f7f]" badgeContent={ProductsDummyData?.length} color="primary">
-              <ShoppingCartIcon />
-              </Badge>
               {/* join button  */}
               <Button
                 variant="contained"
@@ -179,7 +175,7 @@ const {Products:ProductsDummyData} = useSelector((state)=>state.cart);
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, 
           }}
           sx={{
             display: { xs: "block", sm: "none" },
