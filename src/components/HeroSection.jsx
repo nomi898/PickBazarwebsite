@@ -86,7 +86,7 @@ const HeroSection = () => {
               />
             </Paper>
 
-            {/* Search Button */}
+            {/* Search Buttons   */}
             <IconButton
               type="submit"
               sx={{
