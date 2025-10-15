@@ -10,21 +10,14 @@ const HeroSection = () => {
         sx={{ 
           position: "relative", 
           width: "100%", 
-          height: { xs: "70vh", sm: "80vh", md: "90vh" }, // taller hero for mobile
-          overflow: "hidden"
+          height: { xs: 400, sm: 500, md: 600 } // responsive height in pixels
         }}
       >
         {/* background image */}
-        <Box
-          component="img"
-          src={HeroImage}
-          alt="Groceries"
-          sx={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block",
-          }}
+        <img 
+          src={HeroImage} 
+          alt="Groceries" 
+          style={{ width: "100%", height: "100%", objectFit: "cover" }} 
         />
 
         {/* overlay content */}
@@ -36,8 +29,7 @@ const HeroSection = () => {
             transform: "translate(-50%, -50%)",
             textAlign: "center",
             color: "#000",
-            px: 2,
-            width: "100%",
+            px: 2, // horizontal padding for smaller screens
           }}
         >
           <Typography 
@@ -45,7 +37,7 @@ const HeroSection = () => {
             sx={{ 
               fontWeight: "bold", 
               mb: 2, 
-              fontSize: { xs: 24, sm: 32, md: 40 } 
+              fontSize: { xs: 24, sm: 32, md: 40 } // responsive font size in pixels
             }}
           >
             Groceries Delivered in 90 Minutes
@@ -53,7 +45,7 @@ const HeroSection = () => {
           <Typography 
             sx={{ 
               mb: 4, 
-              fontSize: { xs: 14, sm: 16, md: 18 } 
+              fontSize: { xs: 14, sm: 16, md: 18 } // responsive font size in pixels
             }}
           >
             Get your healthy foods & snacks delivered at your doorsteps all day everyday
@@ -63,9 +55,9 @@ const HeroSection = () => {
           <Box
             sx={{
               display: "flex",
-              flexDirection: { xs: "column", sm: "row" },
+              flexDirection: { xs: "column", sm: "row" }, // vertical on mobile, horizontal on desktop
               alignItems: "stretch",
-              width: { xs: "90%", sm: 750 },
+              width: { xs: "100%", sm: 750 }, // full width on mobile, fixed on desktop
               mx: "auto",
             }}
           >
@@ -75,7 +67,7 @@ const HeroSection = () => {
               sx={{ 
                 display: "flex", 
                 flex: 1,
-                borderRadius: { xs: "10px", sm: "10px 0 0 10px" },
+                borderRadius: { xs: "10px", sm: "10px 0 0 10px" }, // rounded corners
                 overflow: "hidden",
               }}
             >
@@ -86,15 +78,15 @@ const HeroSection = () => {
               />
             </Paper>
 
-            {/* Search Buttons   */}
+            {/* Search Button */}
             <IconButton
               type="submit"
               sx={{
-                mt: { xs: 1, sm: 0 },
-                p: { xs: "10px 0", sm: "20px" },
+                mt: { xs: 1, sm: 0 }, // margin-top only on mobile
+                p: "20px",
                 backgroundColor: "#009f7f",
                 color: "white",
-                borderRadius: { xs: "10px", sm: "0 10px 10px 0" },
+                borderRadius: { xs: "10px", sm: "0 10px 10px 0" }, // adjust corners
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -102,9 +94,7 @@ const HeroSection = () => {
               aria-label="Search"
             >
               <SearchIcon />
-              <Typography sx={{ ml: 1, fontWeight: "bold", fontSize: { xs: 14, sm: 16 } }}>
-                Search
-              </Typography>
+              <Typography sx={{ ml: 1, fontWeight: "bold" }}>Search</Typography>
             </IconButton>
           </Box>
         </Box>
