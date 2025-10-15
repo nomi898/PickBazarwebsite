@@ -64,7 +64,11 @@ function AppHeader(props) {
       <List>
         {navItems.map((item) => (
           <ListItem key={item.label} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }} component={Link} to={item.path}>
+            <ListItemButton
+              sx={{ textAlign: "center" }}
+              component={Link}
+              to={item.path}
+            >
               <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
@@ -80,7 +84,9 @@ function AppHeader(props) {
             onChange={handleChange}
             sx={{
               ".MuiOutlinedInput-notchedOutline": { border: "none" },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": { border: "none" },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                border: "none",
+              },
             }}
           >
             <MenuItem value={10}>Flash Sale</MenuItem>
@@ -110,7 +116,8 @@ function AppHeader(props) {
     </Box>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -121,8 +128,13 @@ function AppHeader(props) {
         component="nav"
         style={{ background: "#ffffff" }}
       >
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           {/* Logo and Search */}
           <Typography
             variant="h6"
@@ -160,7 +172,9 @@ function AppHeader(props) {
           </Typography>
 
           {/* Desktop Menu */}
-          <Box sx={{ display: { xs: "none", sm: "flex" }, alignItems: "center" }}>
+          <Box
+            sx={{ display: { xs: "none", sm: "flex" }, alignItems: "center" }}
+          >
             <Box className="flex justify-center items-center">
               {navItems.map((item) => (
                 <NavLink
@@ -180,13 +194,17 @@ function AppHeader(props) {
               {/* Select dropdown */}
               <Box sx={{ minWidth: 100, mx: 1, display: "inline-block" }}>
                 <FormControl fullWidth size="small">
-                  <InputLabel sx={{ color: "#6B7280", border: "0" }}>pages</InputLabel>
+                  <InputLabel sx={{ color: "#6B7280", border: "0" }}>
+                    pages
+                  </InputLabel>
                   <Select
                     value={age}
                     onChange={handleChange}
                     sx={{
                       ".MuiOutlinedInput-notchedOutline": { border: "none" },
-                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": { border: "none" },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        border: "none",
+                      },
                     }}
                   >
                     <MenuItem value={10}>Flash Sale</MenuItem>
@@ -198,7 +216,10 @@ function AppHeader(props) {
               </Box>
 
               {/* Join button */}
-              <Button variant="contained" sx={{ color: "#fffff", backgroundColor: "#009f7f" }}>
+              <Button
+                variant="contained"
+                sx={{ color: "#fffff", backgroundColor: "#009f7f" }}
+              >
                 Join
               </Button>
 
@@ -207,7 +228,11 @@ function AppHeader(props) {
                 to="/register"
                 component={Link}
                 variant="contained"
-                sx={{ color: "#fffff", marginLeft: "9px", backgroundColor: "#009f7f" }}
+                sx={{
+                  color: "#fffff",
+                  marginLeft: "9px",
+                  backgroundColor: "#009f7f",
+                }}
               >
                 Become a Seller
               </Button>
@@ -243,9 +268,8 @@ function AppHeader(props) {
             onClick={handleDrawerToggle}
             sx={{ ml: 2, display: { xs: "block", sm: "none" } }}
           >
-            <MenuIcon sx={{ color: "#009f7f" }}/>
+            <MenuIcon sx={{ color: "#009f7f" }} />
           </IconButton>
-
         </Toolbar>
       </AppBar>
 
@@ -259,7 +283,10 @@ function AppHeader(props) {
           ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
         >
           {drawer}

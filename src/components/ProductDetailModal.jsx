@@ -30,8 +30,8 @@ const ProductDetailModal = (props) => {
             ...ModalStyle,
             maxWidth: { xs: "95%", sm: "90%", md: "80%", lg: "70%" }, // Responsive width
             maxHeight: { xs: "80vh", sm: "85vh" }, // Reduced max height for mobile (80vh instead of 90vh)
-            overflow: "auto", 
-            margin: "auto", 
+            overflow: "auto",
+            margin: "auto",
           }}
         >
           <Box sx={{ flexGrow: 1 }}>
