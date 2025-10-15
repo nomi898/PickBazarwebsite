@@ -1,55 +1,63 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
-import { useDispatch, useSelector } from 'react-redux';
 import { ButtonGroup } from '@mui/material';
-import { addToCart, DeletefromCart, removeFromCart } from '../../store/slices/Cartlist';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Link, NavLink } from "react-router";
-import React from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeFromCart, DeletefromCart } from '../../store/slices/Cartlist';
+import { Link } from "react-router";
 
 export default function CartList(props) {
   const { openCartList, toggleDrawer } = props;
   const { CartList } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  // total price logic
+  // Calculate total price
   const totalPrice = CartList
     .reduce((prev, curr) => curr.quantity * curr.price + prev, 0)
     .toFixed(2);
 
   return (
     <div>
-      <Drawer open={openCartList} onClose={toggleDrawer(false)}>
-        <Box sx={{ width: 500 }} role="presentation">
+      <Drawer
+        open={openCartList}
+        onClose={toggleDrawer(false)}
+        anchor="right" // drawer slides from right
+      >
+        <Box sx={{ width: { xs: 300, sm: 500 } }} role="presentation">
           {CartList?.length > 0 ? (
             <>
+              {/* Header */}
               <h1 className="text-center text-3xl rounded-sm h-15 flex justify-center items-center">
                 Cart Items
               </h1>
 
+              {/* Cart Items */}
               {CartList.map((product) => (
                 <div
                   key={product.id}
-                  className="flex items-center rounded-medium bg-gray-100 border-1 m-2"
+                  className="flex items-center rounded-md bg-gray-100 border m-2 p-2"
                 >
+                  {/* Product Image */}
                   <img
-                    className="w-[100px]"
+                    className="w-[100px] h-[100px] object-cover"
                     src={product.image}
                     alt={product.name}
                   />
-                  <div className="flex justify-between w-full items-center px-5">
+
+                  {/* Product Info and Controls */}
+                  <div className="flex justify-between w-full items-center px-3">
+                    {/* Name and Price */}
                     <div>
                       <h3 className="font-bold">{product.name}</h3>
                       <p>
-                        <span className="font-bold">Price:</span> ${' '}
-                        {product.price}
+                        <span className="font-bold">Price:</span> ${product.price}
                       </p>
                     </div>
 
-                    {/* increase / decrease buttons */}
-                    <ButtonGroup variant="outlined" aria-label="Basic button group">
+                    {/* Quantity buttons */}
+                    <ButtonGroup variant="outlined" aria-label="quantity buttons">
                       <Button
                         sx={{ color: '#009f7f', borderColor: '#009f7f' }}
                         size="small"
@@ -72,16 +80,16 @@ export default function CartList(props) {
                       </Button>
                     </ButtonGroup>
 
-                    {/* delete button */}
-                    <button onClick={() => dispatch(DeletefromCart(product))}>
+                    {/* Delete Button */}
+                    <Button onClick={() => dispatch(DeletefromCart(product))}>
                       <DeleteIcon sx={{ color: 'red' }} />
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}
 
-              {/* ✅ total price button */}
-              <div className="flex justify-center m-3">
+              {/* Total Price Button */}
+              <Box className="flex justify-center m-3">
                 <Button
                   fullWidth
                   variant="contained"
@@ -95,27 +103,27 @@ export default function CartList(props) {
                 >
                   Total Price: ${totalPrice}
                 </Button>
-              </div>
+              </Box>
             </>
           ) : (
-            // Empty cart button
+            // Empty Cart Message
             <Box className="flex flex-col justify-center items-center h-full p-5">
               <h1 className="text-center text-2xl mb-4 text-gray-600">
                 No Products in Cart
               </h1>
-              <Link to='/' >
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: '#009f7f',
-                  color: 'white',
-                  fontWeight: 600,
-                  px: 4,
-                  py: 2,
-                }}  
-              >
-                Add Items to Cart
-              </Button>
+              <Link to="/">
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: '#009f7f',
+                    color: 'white',
+                    fontWeight: 600,
+                    px: 4,
+                    py: 2,
+                  }}
+                >
+                  Add Items to Cart
+                </Button>
               </Link>
             </Box>
           )}
